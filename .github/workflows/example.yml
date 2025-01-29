@@ -12,8 +12,17 @@ jobs:
               run: cowsay -f dragon "Runn for cover, I am Dragon" >> dragon.txt
             - name: show files
               run: cat dragon.txt
+            - uses: actions/upload-artifact@v4
+              with:
+                name: my-artifact
+                path: ./dragon.txt
     deploy:
+        needs: build
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/download-artifact@v4
+              with:
+                name: my-artifact
+                path: ./
             - name: show file
-              run: cat dragon.txt
+              run: cat ./dragon.txt
