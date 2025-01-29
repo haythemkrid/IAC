@@ -3,7 +3,7 @@ name: example-ci
 on: push
 
 jobs:
-    first_job:
+    build:
         runs-on: ubuntu-latest
         steps:
             - name: Install cowsay Program
@@ -11,4 +11,9 @@ jobs:
             - name: Execute cowsay CMD
               run: cowsay -f dragon "Runn for cover, I am Dragon" >> dragon.txt
             - name: show files
+              run: cat dragon.txt
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: show file
               run: cat dragon.txt
